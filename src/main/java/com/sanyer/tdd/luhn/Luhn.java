@@ -27,17 +27,24 @@ public class Luhn {
     	
     	for (int i=0; i < getCreditCardLength() ; i++) {
     		int digit = Character.getNumericValue(creditCard.charAt(i));
-    		int doubledDigit = 0;
-    		if (i % 2 == getParity()) {
-    			doubledDigit = digit * 2;	// refactor afterwards to just digit, no need for doubledDigit to exist
-    		}
-    		if (doubledDigit > 9) {
-    			doubledDigit = doubledDigit - 9;
-    		}
     		System.out.print("Credit Card Number Position: " + i + "; Digit Value: ");
     		System.out.print(digit);
-    		System.out.println("; Doubled? " + doubledDigit);
+
+    		if (i % 2 == getParity()) {
+    			digit = digit * 2;
+    		}
+    		if (digit > 9) {
+    			digit = digit - 9;
+    		}
+
+    		sum = sum + digit;
+    		System.out.println("; Doubled? " + digit);
     	}
-    	return true;
+    	System.out.println("Sum of digits: " + sum);
+
+    	boolean isValid = (sum % 10) == 0;
+    	System.out.println("Is Credit Card valid?: " + isValid);
+
+    	return isValid;
     }
 }
