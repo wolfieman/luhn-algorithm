@@ -24,11 +24,19 @@ public class Luhn {
     }
 
     public boolean checkLuhnCCValidity (String creditCard) {
-    	// char creditCardArray[] = creditCard.toCharArray();
+    	
     	for (int i=0; i < getCreditCardLength() ; i++) {
     		int digit = Character.getNumericValue(creditCard.charAt(i));
+    		int doubledDigit = 0;
+    		if (i % 2 == getParity()) {
+    			doubledDigit = digit * 2;	// refactor afterwards to just digit, no need for doubledDigit to exist
+    		}
+    		if (doubledDigit > 9) {
+    			doubledDigit = doubledDigit - 9;
+    		}
     		System.out.print("Credit Card Number Position: " + i + "; Digit Value: ");
-    		System.out.println(digit);
+    		System.out.print(digit);
+    		System.out.println("; Doubled? " + doubledDigit);
     	}
     	return true;
     }
