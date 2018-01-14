@@ -1,11 +1,10 @@
 package com.sanyer.tdd.luhn;
 
 public class Luhn {
-	private String creditCard = "4012888888881881";
+	private String creditCard = "4012888888881882";
 	private int sum = 0;
 	private int creditCardLength = creditCard.length();
 	private int parity = creditCardLength % 2; 
-
 
     public String getCreditCard () {
     	return this.creditCard;
@@ -23,27 +22,41 @@ public class Luhn {
     	return this.parity;
     }
 
+    public int doubleIfParity (int index, int digit) {
+    	if (index % 2 == getParity()) {
+    			digit = digit * 2;
+    	}
+    	return digit;
+    }
+
+    public int adjustDigitIfGreaterThanNine (int digit) {
+    	if (digit > 9) {
+    			digit = digit - 9;
+    	}
+    	return digit;
+    }
+
+    public void printMessage(boolean isValid) {
+    	if (isValid) {
+    		System.out.println("Credit Card " + creditCard + " is valid.");
+    	} else {
+    		System.out.println("Credit Card " + creditCard + " is not valid.");
+    	}
+    }
+
     public boolean checkLuhnCCValidity (String creditCard) {
     	
     	for (int i=0; i < getCreditCardLength() ; i++) {
     		int digit = Character.getNumericValue(creditCard.charAt(i));
-    		System.out.print("Credit Card Number Position: " + i + "; Digit Value: ");
-    		System.out.print(digit);
 
-    		if (i % 2 == getParity()) {
-    			digit = digit * 2;
-    		}
-    		if (digit > 9) {
-    			digit = digit - 9;
-    		}
+    		digit = adjustDigitIfGreaterThanNine(doubleIfParity(i, digit));
 
     		sum = sum + digit;
-    		System.out.println("; Doubled? " + digit);
     	}
-    	System.out.println("Sum of digits: " + sum);
 
     	boolean isValid = (sum % 10) == 0;
-    	System.out.println("Is Credit Card valid?: " + isValid);
+    	
+    	printMessage(isValid);
 
     	return isValid;
     }

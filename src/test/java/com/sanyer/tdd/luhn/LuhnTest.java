@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.Assert;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import com.sanyer.tdd.luhn.Luhn;
 
 public class LuhnTest {
@@ -26,8 +27,16 @@ public class LuhnTest {
     }
 
     @Test
-    public void testLuhnAlgorithm() {
+    public void testLuhnAlgorithmIsValid() {
         Luhn creditCard = new Luhn();
-        assertTrue(creditCard.checkLuhnCCValidity(creditCard.getCreditCard()));
+        // assertTrue(creditCard.checkLuhnCCValidity(creditCard.getCreditCard()));  4012888888881881
+        assertTrue(creditCard.checkLuhnCCValidity("4012888888881881"));
+    }
+
+    @Test
+    public void testLuhnAlgorithmIsInvalid() {
+        Luhn creditCard = new Luhn();
+        // assertTrue(creditCard.checkLuhnCCValidity(creditCard.getCreditCard()));  4012888888881881
+        assertFalse(creditCard.checkLuhnCCValidity("4012888888881882"));
     }
 }
