@@ -13,8 +13,14 @@ public class LuhnTest {
     }
 
     @Test
-    public void testCreditCardLegth() {
+    public void testCreditCardLength() {
         Luhn creditCard = new Luhn();
-        assertEquals(16, creditCard.getCreditCard().length());
+        assertEquals(16, creditCard.getCreditCardLength());
+    }
+
+    @Test
+    public void testParity() {
+        Luhn creditCard = new Luhn();
+        assertEquals(0, creditCard.getParity());
     }
 }
