@@ -1,11 +1,7 @@
 package com.sanyer.tdd.luhn;
 
-/**
- * Hello world!
- *
- */
 public class Luhn {
-	public String creditCard = "123";
+	public String creditCard = "1234567890123456";
 
     public String getCreditCard () {
     	return this.creditCard;
