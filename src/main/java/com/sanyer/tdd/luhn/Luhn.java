@@ -22,4 +22,14 @@ public class Luhn {
     public int getParity () {
     	return this.parity;
     }
+
+    public boolean checkLuhnCCValidity (String creditCard) {
+    	// char creditCardArray[] = creditCard.toCharArray();
+    	for (int i=0; i < getCreditCardLength() ; i++) {
+    		int digit = Character.getNumericValue(creditCard.charAt(i));
+    		System.out.print("Credit Card Number Position: " + i + "; Digit Value: ");
+    		System.out.println(digit);
+    	}
+    	return true;
+    }
 }
