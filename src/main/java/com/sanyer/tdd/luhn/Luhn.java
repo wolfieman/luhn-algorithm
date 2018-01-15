@@ -1,10 +1,23 @@
 package com.sanyer.tdd.luhn;
 
 public class Luhn {
-	private String creditCard = "4012888888881882";
+	private String creditCard = "4012888888881881";
+	// private String creditCards[] = {"4012888888881881", "4012888888881881"};
 	private int sum = 0;
 	private int creditCardLength = creditCard.length();
-	private int parity = creditCardLength % 2; 
+	private int parity = creditCardLength % 2;
+
+	public static void main(String[] args){
+		String creditCards[] = {"4012888888881881", "4012888888881882"};
+    	System.out.println("Hello World!");
+    	Luhn creditCard = new Luhn();
+
+    	for (int i = 0; i < creditCards.length; i++) {
+    		// System.out.println(i);
+    		// System.out.println(creditCards[i]);
+    		creditCard.checkLuhnCCValidity(creditCards[i]);
+    	}
+	} 
 
     public String getCreditCard () {
     	return this.creditCard;
